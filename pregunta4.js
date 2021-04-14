@@ -21,12 +21,33 @@
    * @param {*} discoveries 
    * @param {*} inventors 
    */
-  function addDiscoveries(inventor, discoveries, inventors){
-      
-  }
+  function addDiscoveries(inventor, discoveries, inventors){ 
+    /*  return inventors
+        .map(inv => {
+          if(inv.last === inventor){
+            return {...inv, discoveries: discoveries}
+          } else{
+            return inv
+          }
+        })  */
+        const NOTFOUND = 'Inventor is not in the list'
+        let index = inventors.findIndex(inv => inv.last === inventor)
+        let inventorInArray;
+        let inventorsNew = [...inventors];
 
-  console.log(addDescubrimientos('Einstein', 
-  ['Teoría de la relatividad especial','Equivalencia entre masa y energía','Teoría de la relatividad general'], inventors
-  ));
+        if(index != -1){
+          inventorInArray = inventors.splice(index)[0];
+          inventorInArray = ({...inventorInArray,discoveries: discoveries})
+          inventorsNew.splice(index,1,inventorInArray)
+          return inventorsNew
+        } else {
+          console.log(NOTFOUND)
+          return inventors
+        }
+        
+        
+      }
 
-  
+console.log(addDiscoveries('Einstein', 
+['Teoría de la relatividad especial','Equivalencia entre masa y energía','Teoría de la relatividad general'], inventors
+)); 

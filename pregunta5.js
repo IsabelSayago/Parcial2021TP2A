@@ -20,3 +20,24 @@ const beers = [
     { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
 ];
 
+
+const newRepository = 'https://tecnoshare.sharepoint.com/sites/beer/';
+const pictureFormat = '.png';
+
+const getExistingFolder = (arrayParameter) => {
+    return arrayParameter
+    .map(beerO => ({...beerO, label: getFolder(beerO)}))  
+}
+
+const getFolder = beerParameter => beerParameter.label.split('/').slice(-2)[0];
+
+const getNewLabel = (arrayParameter) => {
+    return arrayParameter
+      .map(beerO => ({...beerO, label: getLabelFormat(beerO)}))
+}
+
+const getPictureName = beerParameter => beerParameter.name.toLowerCase().replace(" ","-");
+
+const getLabelFormat = beerParameter => `${newRepository}${beerParameter.label}$/${getPictureName(beerParameter)}${pictureFormat}`;
+
+console.log(getNewLabel(getExistingFolder(beers)))

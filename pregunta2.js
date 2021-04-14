@@ -14,9 +14,19 @@
     pants: 5,
   }
 
+const SUCCESS_CODE = 200;
+const FAIL_CODE = 500;
+
 const sale = function (article, cant){
+    if(inventory[article] >= cant ){
+      inventory[article] = inventory[article] - cant
+      return SUCCESS_CODE;
+    } else {
+      return FAIL_CODE
+    }
   
 }
+
 
 // TESTS (no modificar)
 console.log(sale('shoes',8) === 200 && inventory.shoes === 2);
