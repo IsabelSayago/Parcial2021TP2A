@@ -6,7 +6,6 @@
 const greater3 = nums => {
     
     nums.sort()
-    console.log(nums)
     let mayor;
     if(nums.length >= 3){
         mayor = 1;
@@ -17,7 +16,6 @@ const greater3 = nums => {
                 mayor++;
             }
             if(mayor === 2){
-                console.log(nums[i+2])
                 return nums[i+2]
                 
             }
